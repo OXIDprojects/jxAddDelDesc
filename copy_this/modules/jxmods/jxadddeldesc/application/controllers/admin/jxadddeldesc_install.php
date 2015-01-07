@@ -1,6 +1,6 @@
 <?php
 /*
- *    This file is part of the module jxExtDelInfo for OXID eShop Community Edition.
+ *    This file is part of the module jxAddDelDesc for OXID eShop Community Edition.
  *
  *    OXID eShop Community Edition is free software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  *    You should have received a copy of the GNU General Public License
  *    along with OXID eShop Community Edition.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @link      https://github.com/job963/jxExtDelInfo
+ * @link      https://github.com/job963/jxAddDelDesc
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  * @copyright (C) Joachim Barthel 2015
  * 
@@ -25,39 +25,53 @@ class jxAddDelDesc_Install
 { 
     public static function onActivate() 
     { 
-
-        //$myConfig = oxRegistry::get('oxConfig');
-        //$bConfig_DropOnDeactivate = $myConfig->getConfigParam( 'bJxInventoryDropOnDeactivate' );
         $oDb = oxDb::getDb(); 
 
         $isUtf = oxRegistry::getConfig()->isUtf(); 
         $sCollate = ($isUtf ? "COLLATE 'utf8_general_ci'" : "");
         
-        $sSql = "ALTER TABLE `oxdeliveryset` "
-                . "ADD COLUMN `JXDESC` VARCHAR(255) NOT NULL AFTER `OXTITLE_3`";
+        $aSql[] = "ALTER TABLE `oxdeliveryset` ADD COLUMN `JXDESC` VARCHAR(255) NOT NULL AFTER `OXTITLE_3`";
+        $aSql[] = "ALTER TABLE `oxdeliveryset` ADD COLUMN `JXDESC_1` VARCHAR(255) NOT NULL AFTER `JXDESC`";
+        $aSql[] = "ALTER TABLE `oxdeliveryset` ADD COLUMN `JXDESC_2` VARCHAR(255) NOT NULL AFTER `JXDESC_1`";
+        $aSql[] = "ALTER TABLE `oxdeliveryset` ADD COLUMN `JXDESC_3` VARCHAR(255) NOT NULL AFTER `JXDESC_2`";
                 
-        $oRs = $oDb->execute($sSql);
+        foreach ($aSql as $sSql) {
+            try {
+                $oRs = $oDb->Execute($sSql);
+            }
+            catch (Exception $e) {
+                echo '<div style="border:2px solid #dd0000;margin:10px;padding:5px;background-color:#ffdddd;font-family:sans-serif;font-size:14px;">';
+                echo '<b>SQL-Error '.$e->getCode().' in SQL statement</b><br />'.$e->getMessage().'';
+                echo '</div>';
+                die();
+            }
+        }
+        //$this->_logAction( 'Module jxAddDelDesc successfully activated' );
         
         return true; 
     } 
+    
 
     public static function onDeactivate() 
     { 
-        //$myConfig = oxRegistry::get("oxConfig");
-        //$bConfig_DropOnDeactivate = $myConfig->getConfigParam("bJxInventoryDropOnDeactivate");
-
-        /*if ($bConfig_DropOnDeactivate) {
-            $oDb = oxDb::getDb(); 
-
-            $sSql = "DROP TABLE IF EXISTS `jxinvarticles`"; 
-            $oRs = $oDb->execute($sSql); 
-             
-            $sSql = "DROP TABLE IF EXISTS `jxinvshipping`"; 
-            $oRs = $oDb->execute($sSql); 
-        }*/
+        //$this->_logAction( 'Module jxAddDelDesc deactivated' );
         
         return true; 
     }  
-}
+    
+    
+    private function _logAction($sText)
+    {
+        $myConfig = oxRegistry::get("oxConfig");
+        $sShopPath = $myConfig->getConfigParam("sShopDir");
+        $sLogPath = $sShopPath.'/log/';
+        
+        $fh = fopen($sLogPath.'jxmods.log',"a+");
+        fputs($fh,$sText."\n");
+        fclose($fh);
+    }
+
+    
+    }
 
 ?>

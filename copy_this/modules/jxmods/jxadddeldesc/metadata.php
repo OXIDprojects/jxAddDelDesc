@@ -12,8 +12,8 @@ $aModule = array(
     'id'           => 'jxAddDelDesc',
     'title'        => 'jxAddDelDesc - Add Description to Delivery Sets',
     'description'  => array(
-                        'de' => 'Text-Finder für die Artikel, Kategories und CMS-Seiten.',
-                        'en' => 'Text finder for Articles, Categories and Content Pages.'
+                        'de' => 'Erweiterung der Versandarten um ein Beschreibungsfeld.',
+                        'en' => 'Extension of Shipping Methods by a Description field.'
                         ),
     'thumbnail'    => 'jxadddeldesc.png',
     'version'      => '0.1',
@@ -23,11 +23,9 @@ $aModule = array(
     'extend'       => array(
                         ),
     'files'        => array(
-        'jxextdelinfo_install'   => 'jxmods/jxadddeldesc/application/controllers/admin/jxadddeldesc_install.php',
-        /*'jxfind' => 'jxmods/jxfind/application/controllers/admin/jxfind.php'*/
+        'jxadddeldesc_install'   => 'jxmods/jxadddeldesc/application/controllers/admin/jxadddeldesc_install.php',
                         ),
     'templates'    => array(
-        /*'jxfind.tpl' => 'jxmods/jxfind/application/views/admin/tpl/jxfind.tpl'*/
                         ),
     'blocks'       => array(
                         array(
@@ -43,7 +41,7 @@ $aModule = array(
                         ),
     'events'       => array(
         'onActivate'   => 'jxadddeldesc_install::onActivate', 
-        'onDeactivate' => 'jxadddeldesc_install::onDeactivate'
+        'onDeactivate' => 'jxddddeldesc_install::onDeactivate'
                         ),
     'settings'     => array(
                         )

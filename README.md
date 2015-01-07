@@ -1,27 +1,29 @@
-# jxFiles - OXID Admin for Managing Files
+# jxAddDelDesc - OXID Admin for Adding a Description field to Shipping Methods
 
-*Module for backend / admin of OXID eShops for managing files*
+**Module for backend/admin and frontend of OXID eShops for adding, editing and displaying a description for each shipping method**
 
 ## Installation and Setup
-1. Copy all folders and files under **copy\_this** to the root folder of your shop.
+1. Copy all folders and files under **copy\_this** to the root folder of your shop.  
+OR  
+Install the [ioly OXID-Connector](https://github.com/ioly/ioly/tree/connector-oxid) (if you haven't done that already), type _jxadddeldesc_ in searchbox and click on ```Install```.
+  
 2. Open your browser and login into the OXID admin.
-3. Goto **Settings** - **Modules**, select the module _jxFiles_ and and activate it.
-4. Switch to the tab **setting** and open one or multiple sections. Enter in the first field the relative path you want to make accessible and in the second field the title which will be shown as selection box. 
+  
+3. Goto **Settings** - **Modules**, select the module _jxAddDelDesc_ and and activate it.
+  
+4. Goto **Tools** and click on ```Update DB Views now```. This is very important, otherwise the module wouldn't see the DB changes. 
 
 ## Screenshot
 
-Start Screen:  
-![Active column](https://github.com/job963/jxFiles/raw/master/docs/img/screenshot.png)
+Administration:  
+![Active column](https://github.com/job963/jxAddDelDesc/raw/master/docs/img/admindesc.png)
+
+Frontend:  
+![Active column](https://github.com/job963/jxAddDelDesc/raw/master/docs/img/shopdisplay.png)
 
 ## Changelog
 
 * **0.1 Initial Release**
-  * Multiple start folder supported
-  * Icons for filetypes
-  * Navigation between folders
-  * Upload of files
-  
-* **0.2** 
-  * Error trapping
-  * Bug with larger files fixed 
-  * Picture preview on hover
+  * Description fields (multilingual) to oxdeliveryset added
+  * Block in admin for editing added
+  * Block in frontend for displaying added

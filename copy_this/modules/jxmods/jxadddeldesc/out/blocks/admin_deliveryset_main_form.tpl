@@ -1,11 +1,11 @@
 [{$smarty.block.parent}]
 
             <tr>
-                <td class="edittext" width="140">
+                <td class="edittext" width="140" style="vertical-align:top;">
                 [{ oxmultilang ident="GENERAL_DESCRIPTION" }]
                 </td>
                 <td class="edittext" width="250">
-                <input type="text" class="editinput" size="50" maxlength="[{$edit->oxdeliveryset__jxdesc->fldmax_length}]" name="editval[oxdeliveryset__jxdesc]" value="[{$edit->oxdeliveryset__jxdesc->value}]" [{ $readonly }]>
+                <textarea class="editinput" rows="4" cols="48" [{*style="width:350;height:150;"*}] wrap="VIRTUAL" name="editval[oxdeliveryset__jxdesc]" [{ $readonly }]>[{$edit->oxdeliveryset__jxdesc->value}]</textarea>
                 </td>
             </tr>
 
